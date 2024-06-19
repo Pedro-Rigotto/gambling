@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <omp.h>
 
 #define ROUNDS 100
 #define VERBOSE false
@@ -46,12 +47,16 @@ int main() {
 
     
     double totalGain = 0;
+    double gain;
+    double res;
+
+    #pragma omp parallel for private(res) private(gain) reduction(+:totalGain) schedule(guided, 1)
     for(int i = 0; i < NUM_TESTS; i++){
-        double res = run_test();
+        res = run_test();
         #if !VERBOSE
             //printf("Round %d: %.0f\n", i, res);
         #endif
-        double gain = res - INITIAL_BALANCE;
+        gain = res - INITIAL_BALANCE;
         totalGain += gain;
     }
 
