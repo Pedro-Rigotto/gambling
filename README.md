@@ -1,64 +1,23 @@
+This simulator runs a gambling system (https://i.imgur.com/UZLkq9o.png) a configurable amount of times. All the settings are in the #define section.
+
 gambling.cpp is sequential code.
 
 gambling.c has been parallelized using OpenMP.
 
-[-------------------------------------------------------------------------------]
-
-PS C:\Users\Pedro\Downloads\gambling> gcc -o gamblingcpp .\gambling.cpp    
-
-PS C:\Users\Pedro\Downloads\gambling> gcc .\gambling.c -o gambling -fopenmp
-
-PS C:\Users\Pedro\Downloads\gambling> Measure-Command { .\gambling.exe }     
 
 
-Days              : 0
+To compile:
 
-Hours             : 0
+gcc -o gamblingcpp .\gambling.cpp
 
-Minutes           : 0
-
-Seconds           : 1
-
-Milliseconds      : 917
-
-Ticks             : 19171951
-
-TotalDays         : 2,21897581018519E-05
-
-TotalHours        : 0,000532554194444444
-
-TotalMinutes      : 0,0319532516666667
-
-TotalSeconds      : 1,9171951
-
-TotalMilliseconds : 1917,1951
+gcc .\gambling.c -o gambling -fopenmp
 
 
 
-PS C:\Users\Pedro\Downloads\gambling> Measure-Command { .\gamblingcpp.exe }
+Timing results:
 
+Parallel (C)         1.9171951 sec
 
-Days              : 0
+Sequential (C++)    15.8637165 sec
 
-Hours             : 0
-
-Minutes           : 0
-
-Seconds           : 15
-
-Milliseconds      : 863
-
-Ticks             : 158637165
-
-TotalDays         : 0,000183607829861111
-
-TotalHours        : 0,00440658791666667
-
-TotalMinutes      : 0,264395275
-
-TotalSeconds      : 15,8637165
-
-TotalMilliseconds : 15863,7165
-
-
-
+Speedup                 8.2744   
